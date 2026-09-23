@@ -3,8 +3,6 @@ from emotion_huggingface import predict_emotion
 
 app = Flask(__name__)
 
-
-# Emotion → Emoji
 EMOTION_EMOJIS = {
     "joy": "😊",
     "sadness": "😢",
@@ -15,18 +13,15 @@ EMOTION_EMOJIS = {
 }
 
 
-# Confidence display: 96% - 99%
 def get_display_confidence(model_confidence):
     if model_confidence is None:
         return None
 
-    # Convert 0–1 to percentage
     if model_confidence <= 1:
         percentage = model_confidence * 100
     else:
         percentage = model_confidence
 
-    # Keep displayed confidence between 96 and 99
     if percentage >= 99:
         return 99
     elif percentage >= 98:
@@ -55,14 +50,10 @@ def detector():
         text = request.form.get("text", "").strip()
 
         if text:
-
-            # Predict emotion
             emotion, model_confidence = predict_emotion(text)
 
-            # Confidence for display
             confidence = get_display_confidence(model_confidence)
 
-            # Get emoji
             if emotion:
                 emoji = EMOTION_EMOJIS.get(
                     emotion.lower(),
@@ -79,4 +70,4 @@ def detector():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
