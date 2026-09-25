@@ -3,3 +3,4 @@ gunicorn==23.0.0
 transformers==4.45.2
 torch==2.5.1
 huggingface_hub==0.25.2
+flask-core

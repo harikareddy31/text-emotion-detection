@@ -8,6 +8,7 @@ form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const text = textInput.value.trim();
+
   if (!text) {
     resultBox.textContent = "Please enter some text first.";
     resultBox.classList.remove("hidden");
@@ -21,9 +22,9 @@ form.addEventListener("submit", async (event) => {
     const response = await fetch(`${backendUrl}/api/predict`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify({ text }),
+      body: JSON.stringify({ text })
     });
 
     const data = await response.json();
@@ -36,6 +37,7 @@ form.addEventListener("submit", async (event) => {
       <h2>Emotion: ${data.emotion}</h2>
       <p>Confidence: ${data.confidence}%</p>
     `;
+
   } catch (error) {
     resultBox.innerHTML = `<p>Error: ${error.message}</p>`;
   }

@@ -1,10 +1,12 @@
 import os
 
 from flask import Flask, jsonify, request
+from flask_core import CORS
 
 from emotion_model import predict_emotion
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.get("/")
