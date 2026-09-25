@@ -2,7 +2,7 @@ const form = document.getElementById("emotion-form");
 const textInput = document.getElementById("text");
 const resultBox = document.getElementById("result");
 
-const backendUrl = "https://your-backend-url.onrender.com";
+const backendUrl = "https://text-emotion-detection-1-umj6.onrender.com";
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
